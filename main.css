@@ -70,17 +70,27 @@ body {
   position: absolute;
   top: 40px;
   right: 40px;
-  padding: 20px;
+  padding: 0 20px 20px;
   background: #211931;
   border-radius: 20px;
   font-size: 2em;
   text-align: center;
 }
 
-.score span {
+.score #clicks {
   display: block;
   font-size: 2em;
-  line-height: .8em;
+}
+
+.score .scored {
+  font-size: .8em;
+}
+
+.score .line {
+  width: 100%;
+  height: 5px;
+  margin: 5px 0;
+  background: linear-gradient(to right, #f88f83 0%, #f56fe5 100%);
 }
 
 .volume {
@@ -201,6 +211,10 @@ body {
   animation: .5s butterdrop;
 }
 
+.hide {
+  display: none !important;
+}
+
 @keyframes butterdrop {
   0% {
     top: 0;
@@ -251,6 +265,30 @@ body {
   .banner {
     margin: 60px auto 20px;
   }
+  .score {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 35px auto 10px;
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .score #clicks, .score #best {
+    display: inline;
+    font-size: 1.5em;
+  }
+  .score .line {
+    display: inline-block;
+    content: '';
+    width: 4px;
+    height: 50px;
+    margin: 0 5px;
+    background: linear-gradient(to bottom, #f88f83 0%, #f56fe5 100%);
+  }
   .board {
     grid-column-gap: 20px;
     grid-row-gap: 25px;
@@ -264,23 +302,27 @@ body {
 }
 
 @media (max-width: 800px) {
-  .score {
-    position: relative;
-    top: auto;
-    right: auto;
-    margin: 35px auto 10px;
-    width: 80%;
-  }
-  .score span {
-    display: inline;
-  }
   .board {
     width: 460px;
     box-shadow: 0 5px 0 10px #211931;
   }
+  .score {
+    padding: 10px;
+  }
   .fj {
     width: 60px;
     height: 36px;
+  }
+  .volume {
+    position: absolute;
+    bottom: auto;
+    right: auto;
+    top: 5px;
+    left: 5px;
+    width: 60px;
+  }
+  .volume img {
+    width: 100%;
   }
 }
 
@@ -308,16 +350,5 @@ body {
   }
   .fj {
     width: 50px;
-  }
-  .volume {
-    position: absolute;
-    bottom: auto;
-    right: auto;
-    top: 5px;
-    left: 5px;
-    width: 60px;
-  }
-  .volume img {
-    width: 100%;
   }
 }

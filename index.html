@@ -28,8 +28,12 @@
       </div>
     </div>
     <div class="score">
-      <span id="clicks">0</span>
-      Clicks
+      <div class="scored">
+        <span id="clicks">0</span>
+        Clicks
+      </div>
+      <div class="line hide"></div>
+      <div class="best scored hide">Best Score <span id="best"></span></div>
     </div>
     <div class="board" id="board">
     </div>
@@ -50,6 +54,12 @@
             audio = true;
           }
         });
+        if (localStorage.getItem('ffbestscore') !== null) {
+          Array.from(document.getElementsByClassName('hide')).forEach((e) => {
+            e.classList.remove('hide');
+          });
+          document.getElementById('best').innerHTML = localStorage.getItem('ffbestscore');
+        }
       })();
     </script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
