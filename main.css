@@ -93,6 +93,15 @@ body {
   background: linear-gradient(to right, #f88f83 0%, #f56fe5 100%);
 }
 
+.help {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 100px;
+  background: transparent;
+  border: none;
+}
+
 .volume {
   position: absolute;
   bottom: 20px;
@@ -102,8 +111,30 @@ body {
   border: none;
 }
 
-.volume img {
+.help img, .volume img {
   width: 80px;
+}
+
+.helptext {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  left: 110px;
+  width: 600px;
+  padding: 15px;
+  background: #272039;
+  border-radius: 20px;
+  box-shadow: 0 5px 0 10px #211931;
+  box-sizing: border-box;
+}
+
+.helptext h3, .helptext p {
+  margin: 0;
+}
+
+.help:focus .helptext,
+.help:hover .helptext {
+  display: block;
 }
 
 .board {
@@ -315,7 +346,7 @@ body {
     width: 60px;
     height: 36px;
   }
-  .volume {
+  .help, .volume {
     position: absolute;
     bottom: auto;
     right: auto;
@@ -323,8 +354,19 @@ body {
     left: 5px;
     width: 60px;
   }
-  .volume img {
+  .help {
+    left: 70px;
+  }
+  .help img, .volume img {
+    width: 50px;
+  }
+  .helptext {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    min-width: 300px;
     width: 100%;
+    max-height: 180px;
   }
 }
 
