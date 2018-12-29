@@ -1,0 +1,14 @@
+{
+    "name": "Flapjack Fwop",
+    "short_name": "",
+    "icons": [
+        {
+            "src": "/android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#F53635",
+    "background_color": "#272039",
+    "display": "standalone"
+}

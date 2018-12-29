@@ -138,6 +138,21 @@ body {
   font-size: 2em;
 }
 
+.twitter-button {
+  display: inline-block;
+  height: 20px;
+  padding: 0 5px 5px;
+  background: #1CA1F3;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.twitter-button img {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
 .fj {
   position: relative;
   width: 100px;

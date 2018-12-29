@@ -69,9 +69,12 @@ function handleClick(x, y) {
 }
 
 function win() {
+  let tweetString = `I just scored ${clicks} in %23FlapjackFwop! Can you beat me?`;
+  const website = `http://cassidoo.github.io/flapjack-fwop`;
   let win = `<div class="win"><div>`
           + `<h1>You win!</h1>`
           + `<div class="result">It took you ${clicks} clicks!</div>`
+          + `<a href="https://twitter.com/intent/tweet?text=${tweetString}&url=${website}&via=cassidoo" class="twitter-button"><img src="twitter.svg" />Tweet #FlapjackFlip</a>`
           + `</div></div>`;
   win = htmlToElement(win);
   document.getElementById('board').appendChild(win);
