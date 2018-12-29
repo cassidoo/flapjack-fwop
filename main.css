@@ -126,6 +126,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 5px 0 10px #211931;
   box-sizing: border-box;
+  z-index: 10;
 }
 
 .helptext h3, .helptext p {
