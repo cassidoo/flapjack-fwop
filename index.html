@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Flapjack Fwop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript" src="game.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="banner">
+      <div class="line">
+        <span>Flapjack Fwop</span>
+      </div>
+    </div>
+    <div class="score">
+      <span id="clicks">0</span>
+      Clicks
+    </div>
+    <div class="board" id="board">
+    </div>
+    <button class="volume">
+      <img src="volume-high.svg" id="vol" alt="volume" />
+    </button>
+    <script>
+      (function () {
+        generateGrid(randomGrid());
+        snd = new Audio("sizzle.wav");
+        let volumeButton = document.getElementById('vol');
+        volumeButton.addEventListener('click', () => {
+          if (audio) {
+            volumeButton.src = 'volume-no.svg'
+            audio = false;
+          } else {
+            volumeButton.src = 'volume-high.svg'
+            audio = true;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
