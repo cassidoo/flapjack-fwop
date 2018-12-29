@@ -230,9 +230,11 @@ body {
 @keyframes winner {
   0% {
     top: -20px;
+    background: #FED314;
     opacity: 0;
   }
   100% {
+    background: rgba(214, 33, 127, .5);
     opacity: 1;
   }
 }
