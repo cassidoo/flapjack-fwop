@@ -202,7 +202,14 @@ body {
   background: radial-gradient(ellipse at center, #bf642f 0%,#bf642f 28%,#f0a653 61%,#f0a653 85%,#ec903c 100%);
   border: none;
   border-radius: 100%;
-  box-shadow: 0 2px 2px 3px #f0dda6, 0px 9px 0px 6px #B10072
+  box-shadow: 0 2px 2px 3px #f0dda6, 0px 9px 0px 6px #B10072;
+  cursor: pointer;
+}
+
+.fj:focus {
+  outline-color: rgba(177,0,114,.5);
+  outline-offset: 10px;
+  outline-style: dashed;
 }
 
 .fj:before {
