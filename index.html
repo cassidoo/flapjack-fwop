@@ -54,17 +54,7 @@
     <script>
       (function () {
         generateGrid(randomGrid());
-        snd = new Audio("sizzle.wav");
-        let volumeButton = document.getElementById('vol');
-        volumeButton.addEventListener('click', () => {
-          if (audio) {
-            volumeButton.src = 'volume-no.svg'
-            audio = false;
-          } else {
-            volumeButton.src = 'volume-high.svg'
-            audio = true;
-          }
-        });
+        audioSetup();
         if (localStorage.getItem('ffbestscore') !== null) {
           Array.from(document.getElementsByClassName('hide')).forEach((e) => {
             e.classList.remove('hide');

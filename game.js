@@ -3,6 +3,30 @@ let clicks = 0;
 let snd;
 let audio = true;
 
+function audioSetup() {
+  snd = new Audio("sizzle.wav");
+  let volumeButton = document.getElementById('vol');
+
+  if (localStorage.getItem('volume') !== null) {
+    audio = localStorage.getItem('volume') == 'true';
+    if (audio) {
+      volumeButton.src = 'volume-high.svg'
+    } else {
+      volumeButton.src = 'volume-no.svg'
+    }
+  }
+  volumeButton.addEventListener('click', () => {
+    if (audio) {
+      volumeButton.src = 'volume-no.svg'
+      audio = false;
+    } else {
+      volumeButton.src = 'volume-high.svg'
+      audio = true;
+    }
+    localStorage.setItem('volume', audio);
+  });
+}
+
 function randomGrid() {
   for (let i = 0; i < 5; i++) {
     let row = [];
@@ -63,9 +87,11 @@ function handleClick(x, y) {
     snd.currentTime = 0;
   }
 
-  if (checkWin()) win();
-
-  addClick();
+  if (checkWin()) {
+    win();
+  } else {
+    addClick();
+  }
 }
 
 function win() {
