@@ -28,14 +28,77 @@ function audioSetup() {
 }
 
 function randomGrid() {
-  for (let i = 0; i < 5; i++) {
-    let row = [];
-    for (let j = 0; j < 5; j++) {
-      row.push(Math.round(Math.random()));
+  let numGenerations = 0;
+
+  do {
+    grid = [];
+    for (let i = 0; i < 5; i++) {
+      let row = [];
+      for (let j = 0; j < 5; j++) {
+        row.push(Math.round(Math.random()));
+      }
+      grid.push(row);
     }
-    grid.push(row);
+
+    numGenerations++;
   }
+  while (!isGridSolvable(grid))
+
+  console.log(`${numGenerations} generations were required.`)
+
   return grid;
+}
+
+/**
+ * Flatten the given nested array one level
+ * @param {object[][]} a 
+ * @returns {object[]}
+ */
+function flattenArray(a){
+  let b = []
+  for (let i = 0; i < a.length; i++) {
+    let row = a[i];
+    for (let j = 0; j < row.length; j++) {
+      b.push(row[j]);
+    }
+  }
+  return b;
+}
+
+/**
+ * Computes the dot product of the input arrays.
+ * @param {number[]} a 
+ * @param {number[]} b 
+ * @returns {number}
+ */
+function dotProduct(a, b) {
+  console.assert(a.length == b.length, "Input arrays must have the same length")
+  
+  let d = 0;
+  for (let i = 0; i < 25; i++) d += a[i] * b[i];
+  return d;
+}
+
+/**
+ * Check if the given 5x5 grid has a solution.
+ * 
+ * This technique is borrowed from https://web.archive.org/web/20140815155142/https://www.math.ksu.edu/math551/math551a.f06/lights_out.pdf
+ * @param {number[]} grid 
+ * @returns {boolean}
+ */
+function isGridSolvable(grid) {
+  const n1 = [0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0];
+  const n2 = [1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1];
+
+  const flatGrid = flattenArray(grid);
+
+  const d1 = dotProduct(flatGrid, n1) % 2;
+  if (d1 == 1) return false;
+
+  const d2 = dotProduct(flatGrid, n2) % 2;
+  if (d2 == 1) return false;
+
+  return true;
 }
 
 function generateGrid(grid) {
