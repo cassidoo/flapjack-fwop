@@ -31,11 +31,16 @@ function randomGrid() {
   for (let i = 0; i < 5; i++) {
     let row = [];
     for (let j = 0; j < 5; j++) {
-      row.push(Math.round(Math.random()));
+      row.push(0);
     }
     grid.push(row);
   }
+
   return grid;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function generateGrid(grid) {
@@ -44,16 +49,20 @@ function generateGrid(grid) {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       let button = `<button class="fj" id="flapjack-${i}-${j}"`
-                 + `onClick="handleClick(${i}, ${j})">`
+                 + `onClick="handleClick(${i}, ${j}, ${false})">`
                  + `${grid[i][j] === 0 ? '<div class="butter"></div>' : ''}`;
                  + `</button>`;
       button = htmlToElement(button);
       board.appendChild(button);
     }
   }
+
+  for (let k = 0; k < 30; k++) {
+    handleClick(getRandomInt(4), getRandomInt(4), true);
+  }
 }
 
-function handleClick(x, y) {
+function handleClick(x, y, init) {
   let g = grid;
 
   g[x][y] = flip(g[x][y]);
@@ -82,15 +91,17 @@ function handleClick(x, y) {
   }
   grid = g;
 
-  if (audio) {
-    snd.play();
-    snd.currentTime = 0;
-  }
+  if (!init) {
+    if (audio) {
+      snd.play();
+      snd.currentTime = 0;
+    }
 
-  if (checkWin()) {
-    win();
-  } else {
-    addClick();
+    if (checkWin()) {
+      win();
+    } else {
+      addClick();
+    }
   }
 }
 
