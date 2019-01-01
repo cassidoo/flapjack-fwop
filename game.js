@@ -35,8 +35,6 @@ function randomGrid() {
     }
     grid.push(row);
   }
-  const solution = solve(grid);
-  console.log(formatSolution(solution));
   return grid;
 }
 
@@ -61,6 +59,9 @@ function generateGrid(grid) {
   for (let k = 0; k < 30; k++) {
     handleClick(getRandomInt(4), getRandomInt(4), true);
   }
+
+  const solution = solve(grid);
+  console.log(formatSolution(solution));
 }
 
 function handleClick(x, y, init) {
