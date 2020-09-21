@@ -1,22 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Flapjack Fwop</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <meta name="msapplication-TileColor" content="#00aba9">
-    <meta name="theme-color" content="#ffffff">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
-    <meta property="og:image:height" content="520">
-    <meta property="og:image:width" content="993">
-    <meta property="og:title" content="Flapjack Fwop!">
-    <meta property="og:description" content="Get the butter on all of the pancakes in as few clicks as possible!">
-    <meta property="og:url" content="http://cassidoo.github.io/flapjack-fwop">
-    <meta property="og:image" content="https://cassidoo.github.io/flapjack-fwop/og-image.jpg">
-    
+    <!-- Web Monetization -->
+    <meta name="monetization" content="$ilp.uphold.com/rEgHHBQGDUDP" />
+
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta property="og:image:height" content="520" />
+    <meta property="og:image:width" content="993" />
+    <meta property="og:title" content="Flapjack Fwop!" />
+    <meta
+      property="og:description"
+      content="Get the butter on all of the pancakes in as few clicks as possible!"
+    />
+    <meta property="og:url" content="http://cassidoo.github.io/flapjack-fwop" />
+    <meta
+      property="og:image"
+      content="https://cassidoo.github.io/flapjack-fwop/og-image.jpg"
+    />
+
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Flapjack Fwop!" />
     <meta
@@ -30,7 +43,10 @@
     />
 
     <script type="text/javascript" src="game.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo+Chettan"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
@@ -47,16 +63,15 @@
       <div class="line hide"></div>
       <div class="best scored hide">Best Score <span id="best"></span></div>
     </div>
-    <div class="board" id="board">
-    </div>
+    <div class="board" id="board"></div>
     <div class="help">
       <img src="question-circle.svg" alt="how to play" />
       <div class="helptext" tabindex="0">
         <h3>How to Play</h3>
         <p>
-          Click on the pancakes to add or remove butter from them, plus the
-          ones on the top, left, bottom, and right of the pancake you clicked.
-          <br>Get butter on all of the pancakes to win!
+          Click on the pancakes to add or remove butter from them, plus the ones
+          on the top, left, bottom, and right of the pancake you clicked.
+          <br />Get butter on all of the pancakes to win!
         </p>
       </div>
     </div>
@@ -67,14 +82,20 @@
       (function () {
         generateGrid(randomGrid());
         audioSetup();
-        if (localStorage.getItem('ffbestscore') !== null) {
-          Array.from(document.getElementsByClassName('hide')).forEach((e) => {
-            e.classList.remove('hide');
+        if (localStorage.getItem("ffbestscore") !== null) {
+          Array.from(document.getElementsByClassName("hide")).forEach((e) => {
+            e.classList.remove("hide");
           });
-          document.getElementById('best').innerHTML = localStorage.getItem('ffbestscore');
+          document.getElementById("best").innerHTML = localStorage.getItem(
+            "ffbestscore"
+          );
         }
       })();
     </script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
   </body>
 </html>
