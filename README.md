@@ -1,7 +1,7 @@
 # flapjack-fwop
 A game where you have to get butter on all of the pancakes.
 
-[Play the game here](cassidoo.github.io/flapjack-fwop/)!
+[Play the game here](https://cassidoo.github.io/flapjack-fwop/)!
 
 ## How to play
 
