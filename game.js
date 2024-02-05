@@ -35,7 +35,6 @@ function randomGrid() {
     }
     grid.push(row);
   }
-
   return grid;
 }
 
@@ -60,6 +59,9 @@ function generateGrid(grid) {
   for (let k = 0; k < 30; k++) {
     handleClick(getRandomInt(4), getRandomInt(4), true);
   }
+
+  const solution = solve(grid);
+  console.log(formatSolution(solution));
 }
 
 function handleClick(x, y, init) {
@@ -148,3 +150,98 @@ function htmlToElement(html) {
   return template.content.firstChild;
 }
 
+
+const R = [
+  [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1],
+  [0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+  [0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0],
+  [0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0],
+  [0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+  [0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+  [0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0],
+  [0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1],
+  [0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1],
+  [0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0],
+  [0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+  [0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0],
+  [0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0],
+  [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
+  [0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0]
+]
+
+function matrixMulMod(a, b, n) {
+  const a_rows = a.length, a_cols = a[0].length,
+      b_rows = b.length, b_cols = b[0].length;
+  let m = new Array(a_rows);
+  for (var r = 0; r < a_rows; r++) {
+    m[r] = new Array(b_cols);
+    for (var c = 0; c < b_cols; c++) {
+      m[r][c] = 0;
+      for (var i = 0; i < a_cols; i++) {
+        m[r][c] = (m[r][c] + a[r][i] * b[i][c]) % n;
+      }
+    }
+  }
+  return m;
+}
+
+function gridToCol(grid) {
+  let m = new Array(25);
+  for (var i = 0; i < 25; i++) {
+    m[i] = new Array(1);
+    let c = i % 5;
+    let r = (i - c) / 5;
+    m[i][0] = grid[r][c];
+  }
+  return m
+}
+
+function colToGrid(col) {
+  let m = new Array(5);
+  for (var r = 0; r < 5; r++) {
+    m[r] = new Array(5);
+    for (var c = 0; c < 5; c++) {
+      m[r][c] = col[r * 5 + c][0];
+    }
+  }
+  return m
+}
+
+function solve(grid) {
+  const col = gridToCol(grid);
+  const colSolution = matrixMulMod(R, col, 2);
+  return colToGrid(colSolution);
+}
+
+function minRequiredClicks(solution) {
+  let sum = 0;
+  for (var r = 0; r < 5; r++) {
+    for (var c = 0; c < 5; c++) {
+      sum += solution[r][c]
+    }
+  }
+  return sum
+}
+
+function formatSolution(solution) {
+  let s = ""
+  s += "Minimum Clicks Required: " + minRequiredClicks(solution) + "\n";
+  s += "Full Solution:";
+  for (var r = 0; r < 5; r++) {
+    s += "\n  "
+    for (var c = 0; c < 5; c++) {
+      s += solution[r][c] + " "
+    }
+  }
+  return s
+}
